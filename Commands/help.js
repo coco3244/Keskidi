@@ -152,7 +152,7 @@ module.exports = {
         }else{ //si un argument command a été spécifié
             let Embed = new Discord.EmbedBuilder()
             .setColor(0xff0000)
-            .setTitle(`Commandes ${command.name}}`)
+            .setTitle(`Commandes ${command.name}`)
             .setThumbnail(bot.user.displayAvatarURL({dynamic:true}))
             .setDescription(`Nom : \`${command.name}\`\nDescription : \`${command.description}\`\nPermission requise : \`${typeof command.permissions !== "bigint" ? command.permissions : new Discord.PermissionsBitField(command.permissions).toArray(false)}\` \n Commande en DM : \`${command.dm ? "Oui":"False"}\` \n Catégorie : \`${command.category}\` `)
             .setTimestamp()
