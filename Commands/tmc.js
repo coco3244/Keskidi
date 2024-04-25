@@ -26,7 +26,7 @@ module.exports = {
       .then((res) => {
         if (res.from.language.iso.toLowerCase() == "fr") {
             return message.reply({
-            content: `Texte à traduire :\`${txt}\` \nRéponse: C'est déja du français, trous de balle !`,
+            content: `Texte à traduire : \`${txt}\` \nRéponse : C'est déja du français, trou de balle !`,
           });
         }
         if (res.from.autoCorrected) {
@@ -38,15 +38,14 @@ module.exports = {
                 `,
           });
         } else {
-            return message.reply({ content: `Texte à traduire :\`${txt}\` \nRéponse : \`${res.text}\`` });
+            return message.reply({ content: `Texte à traduire : \`${txt}\` \nRéponse : \`${res.text}\`` });
         }
       })
       .catch((err) => {
         return message.reply({
-          content: `Une erreur est survenue: \`${err}\``,
+          content: `Une erreur est survenue : \`${err}\``,
           ephemeral: true,
         });
-        console.error(err);
       });
   },
 };
