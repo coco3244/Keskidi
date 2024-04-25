@@ -1,4 +1,21 @@
 {
+  "name": "keskidi",
+  "version": "1.0.0",
+  "main": "Keskidi.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coco3244/Keskidi.git"
+  },
+  "author": "Coco3244",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coco3244/Keskidi/issues"
+  },
+  "homepage": "https://github.com/coco3244/Keskidi#readme",
   "dependencies": {
     "@discordjs/opus": "^0.8.0",
     "@discordjs/rest": "^1.3.0",
@@ -7,5 +24,6 @@
     "discord.js": "^14.14.1",
     "dotenv": "^16.4.5",
     "pagination.djs": "^4.0.14"
-  }
+  },
+  "description": ""
 }
