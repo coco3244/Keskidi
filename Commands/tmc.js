@@ -21,6 +21,8 @@ module.exports = {
     const txt = args.getString("texte").toLowerCase();
     if (txt.lenght < 2)
       return message.reply({ content: "C'est ptète un peu court là, non ?" });
+    if (txt.lenght > 2000)
+      return message.reply({ content: "C'est limité à 2000 caractères par trad, c'est con :/" });
 
     translate(txt, { to: "fr" })
       .then((res) => {
@@ -31,7 +33,7 @@ module.exports = {
         }
         if (res.from.autoCorrected) {
             return message.reply({
-            content: `Apparement du sais pas écrire ou t'as copié/collé de la merde du coup j'ai corrigé le texte en : \n 
+            content: `Apparement tu sais pas écrire ou t'as copié/collé de la merde du coup j'ai corrigé le texte en : \n 
                 \`${res.from.text.value}\` \n
                 Et je l'ai traduit en : \n
                 \`${res.text}\`
