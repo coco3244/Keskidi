@@ -11,7 +11,7 @@ module.exports = {
     {
       type: "string",
       name: "texte",
-      description: "le texte à traduire",
+      description: "Le texte à traduire inférieur à 2000 caractères",
       required: true,
       autocomplete: false,
     },
