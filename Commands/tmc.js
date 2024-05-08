@@ -22,31 +22,41 @@ module.exports = {
     if (txt.lenght < 2)
       return message.reply({ content: "C'est ptète un peu court là, non ?" });
     if (txt.lenght > 2000)
-      return message.reply({ content: "C'est limité à 2000 caractères par trad, c'est con :/" });
+      return message.reply({
+        content: "C'est limité à 2000 caractères par trad, c'est con :/",
+      });
 
     translate(txt, { to: "fr" })
       .then((res) => {
         if (res.from.language.iso.toLowerCase() == "fr") {
-            return message.reply({
-            content: `Texte à traduire : \`${txt}\` \nRéponse : C'est déja du français, trou de balle !`,
+          return message.reply({
+            content: `C'est déja du français, Andouille !!`,
           });
         }
         if (res.from.autoCorrected) {
-            return message.reply({
+          
+          message.reply({
             content: `Apparement tu sais pas écrire ou t'as copié/collé de la merde du coup j'ai corrigé le texte en : \n 
-                \`${res.from.text.value}\` \n
-                Et je l'ai traduit en : \n
-                \`${res.text}\`
+                \`${res.from.text.value}\`              
                 `,
           });
+          return message.reply({
+            content: `Et je l'ai traduit en : \n
+                \`${res.text}\``,
+          });
         } else {
-            return message.reply({ content: `Texte à traduire : \`${txt}\` \nRéponse : \`${res.text}\`` });
+
+          message.reply({
+            content: `Texte à traduire : \`${txt}\``,
+          });
+          return message.reply({
+            content: `Réponse : \`${res.text}\``,
+          });
         }
       })
       .catch((err) => {
         return message.reply({
           content: `Une erreur est survenue : \`${err}\``,
-          ephemeral: true,
         });
       });
   },
