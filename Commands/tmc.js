@@ -34,6 +34,7 @@ module.exports = {
           });
         }
         if (res.from.autoCorrected) {
+          
           return message
             .reply({
               content: `Apparement tu sais pas écrire ou t'as copié/collé de la merde du coup j'ai corrigé le texte en : \n 
@@ -47,7 +48,7 @@ module.exports = {
               });
             });
         } else {
-          return message
+          message
             .reply({
               content: `Texte à traduire : \`${txt}\``,
             })
