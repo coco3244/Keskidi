@@ -17,7 +17,7 @@ module.exports = {
     },
   ],
 
-  async run(bot, message, args) {
+  run(bot, message, args) {
     const txt = args.getString("texte").toLowerCase();
     if (txt.lenght < 2)
       return message.reply({ content: "C'est ptète un peu court là, non ?" });
@@ -26,7 +26,7 @@ module.exports = {
         content: "C'est limité à 2000 caractères par trad, c'est con :/",
       });
 
-    await translate(txt, { to: "fr" })
+    translate(txt, { to: "fr" })
       .then((res) => {
         if (res.from.language.iso.toLowerCase() == "fr") {
           return message.reply({
@@ -41,20 +41,21 @@ module.exports = {
                 `,
             })
             .then(() => {
-              message.reply({
+              message.followUp({
                 content: `Et je l'ai traduit en : \n
                   \`${res.text}\``,
               });
             });
         } else {
-
-          message.reply({
-            content: `Texte à traduire : \`${txt}\``,
-          });
-
-          message.followUp({
-            content: `Réponse : \`${res.text}\``,
-          });
+          return message
+            .reply({
+              content: `Texte à traduire : \`${txt}\``,
+            })
+            .then(() => {
+              message.followUp({
+                content: `Réponse : \`${res.text}\``,
+              });
+            });
         }
       })
       .catch((err) => {
