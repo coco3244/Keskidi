@@ -47,12 +47,12 @@ module.exports = {
               });
             });
         } else {
-          
+
           message.reply({
             content: `Texte à traduire : \`${txt}\``,
           });
 
-          message.reply({
+          message.followUp({
             content: `Réponse : \`${res.text}\``,
           });
         }
