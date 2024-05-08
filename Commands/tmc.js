@@ -26,7 +26,7 @@ module.exports = {
         content: "C'est limité à 2000 caractères par trad, c'est con :/",
       });
 
-    translate(txt, { to: "fr" })
+      await translate(txt, { to: "fr" })
       .then((res) => {
         if (res.from.language.iso.toLowerCase() == "fr") {
           return message.reply({
@@ -34,7 +34,7 @@ module.exports = {
           });
         }
         if (res.from.autoCorrected) {
-          
+
           message.reply({
             content: `Apparement tu sais pas écrire ou t'as copié/collé de la merde du coup j'ai corrigé le texte en : \n 
                 \`${res.from.text.value}\`              
