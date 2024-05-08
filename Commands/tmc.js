@@ -26,7 +26,7 @@ module.exports = {
         content: "C'est limité à 2000 caractères par trad, c'est con :/",
       });
 
-      await translate(txt, { to: "fr" })
+    await translate(txt, { to: "fr" })
       .then((res) => {
         if (res.from.language.iso.toLowerCase() == "fr") {
           return message.reply({
@@ -34,24 +34,28 @@ module.exports = {
           });
         }
         if (res.from.autoCorrected) {
-
-          message.reply({
-            content: `Apparement tu sais pas écrire ou t'as copié/collé de la merde du coup j'ai corrigé le texte en : \n 
+          return message
+            .reply({
+              content: `Apparement tu sais pas écrire ou t'as copié/collé de la merde du coup j'ai corrigé le texte en : \n 
                 \`${res.from.text.value}\`              
                 `,
-          });
-          return message.reply({
-            content: `Et je l'ai traduit en : \n
-                \`${res.text}\``,
-          });
+            })
+            .then(() => {
+              message.reply({
+                content: `Et je l'ai traduit en : \n
+                  \`${res.text}\``,
+              });
+            });
         } else {
-
-          message.reply({
-            content: `Texte à traduire : \`${txt}\``,
-          });
-          return message.reply({
-            content: `Réponse : \`${res.text}\``,
-          });
+          return message
+            .reply({
+              content: `Texte à traduire : \`${txt}\``,
+            })
+            .then(() => {
+              message.reply({
+                content: `Réponse : \`${res.text}\``,
+              });
+            });
         }
       })
       .catch((err) => {
