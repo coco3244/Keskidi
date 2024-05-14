@@ -19,9 +19,9 @@ module.exports = {
 
   run(bot, message, args) {
     const txt = args.getString("texte").toLowerCase();
-    if (txt.lenght < 2)
+    if (txt.length < 2)
       return message.reply({ content: "C'est ptète un peu court là, non ?" });
-    if (txt.lenght > 2000)
+    if (txt.length > 2000)
       return message.reply({
         content: "C'est limité à 2000 caractères par trad, c'est con :/",
       });
@@ -37,30 +37,30 @@ module.exports = {
           return message
             .reply({
               content: `Apparement tu sais pas écrire ou t'as copié/collé de la merde du coup j'ai corrigé le texte en : \n 
-                \`${res.from.text.value}\`              
+                \`\`\`${res.from.text.value}\`\`\`              
                 `,
             })
             .then(() => {
               message.followUp({
                 content: `Et je l'ai traduit en : \n
-                  \`${res.text}\``,
+                  \`\`\`${res.text}\`\`\``,
               });
             });
         } else {
           return message
             .reply({
-              content: `Texte à traduire : \`${txt}\``,
+              content: `Texte à traduire : \`\`\`${txt}\`\`\``,
             })
             .then(() => {
               message.followUp({
-                content: `Réponse : \`${res.text}\``,
+                content: `Réponse : \`\`\`${res.text}\`\`\``,
               });
             });
         }
       })
       .catch((err) => {
         return message.reply({
-          content: `Une erreur est survenue : \`${err}\``,
+          content: `Une erreur est survenue : \`\`\`${err}\`\`\``,
         });
       });
   },
