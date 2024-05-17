@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const translate = require("@iamtraction/google-translate");
 let Channels = [];
+let Started = false;
 
 module.exports = {
   name: "autotrad",
@@ -10,38 +11,45 @@ module.exports = {
   category: "Action",
 
   run(bot, message) {
-    const listener = (msg) => {
+    const listener =  (msg) => {
       if (
         msg.author.id != bot.user.id &&
         Channels.includes(msg.channel.id) &&
         msg.content.length <= 2000
       ) {
-        
         translate(msg.content, { to: "fr" })
-          .then((res) => {
+          .then(async (res) => {
             if (res.from.language.iso.toLowerCase() == "fr") {
               return;
             } else {
-              return msg.reply({
-                content: `Réponse : \`\`\`${res.text}\`\`\``,
-              });
+              const thread = await msg.startThread({
+                name:'Traduction',
+                autoArchiveDuration: Discord.ThreadAutoArchiveDuration.OneHour,
+              })
+              thread.send({content: `Réponse : \`\`\`${res.text}\`\`\``})
+              return
             }
           })
-          .catch((err) => {
-            return msg.reply({
-              content: `Une erreur est survenue : \`\`\`${err}\`\`\``,
-            });
+          .catch(async (err) => {
+            const thread = await msg.startThread({
+              name:'Traduction (Erreur)',
+              autoArchiveDuration: Discord.ThreadAutoArchiveDuration.OneHour,
+            })
+            thread.send({content: `Réponse : \`\`\`${err}\`\`\``})
+              return
           });
       }
     };
-
+    
     if (!Channels.includes(message.channel.id)) {
       Channels.push(message.channel.id);
-      if (Channels.length == 1) {
+      if (!Started) {
         bot.on("messageCreate", listener);
+        Started=true;
       }
       return message.reply({ content: "Auto trad activée sur ce cannal" });
     } else {
+      console.log(Channels);
       Channels.splice(Channels.indexOf(message.channel.id));
       return message.reply({ content: "Auto trad désactivée sur ce cannal" });
     }
