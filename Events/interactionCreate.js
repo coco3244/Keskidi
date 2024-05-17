@@ -12,6 +12,4 @@ module.exports = async(bot,interaction)=>{
         let command = require(`../Commands/${interaction.commandName}`)
         command.run(bot,interaction,interaction.options)      
     }   
-
-   
 }
