@@ -47,11 +47,11 @@ module.exports = {
         bot.on("messageCreate", listener);
         Started=true;
       }
-      return message.reply({ content: "Auto trad activée sur ce cannal" });
+      return message.reply({ content: "Auto trad activée sur ce canal" });
     } else {
       console.log(Channels);
       Channels.splice(Channels.indexOf(message.channel.id));
-      return message.reply({ content: "Auto trad désactivée sur ce cannal" });
+      return message.reply({ content: "Auto trad désactivée sur ce canal" });
     }
   },
 };
