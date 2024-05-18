@@ -27,7 +27,7 @@ module.exports = {
                 name: "Traduction",
                 autoArchiveDuration: Discord.ThreadAutoArchiveDuration.OneHour,
               });
-              await Thread.send({ content: `\`\`\`${res.text}\`\`\``});
+              await Thread.send({ content: `${res.text}`});
               return;
             }
           })
