@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const translate = require("@iamtraction/google-translate");
-let Channels = [];
+
 let Started = false;
 
 module.exports = {
@@ -14,7 +14,7 @@ module.exports = {
     const listener = async (msg) => {
       if (
         msg.author.id != bot.user.id &&
-        Channels.includes(msg.channel.id) &&
+        global.Channels.includes(msg.channel.id) &&
         msg.content.length <= 2000
       ) {
         let Thread
@@ -50,8 +50,8 @@ module.exports = {
       }
     };
 
-    if (!Channels.includes(message.channel.id)) {
-      Channels.push(message.channel.id);
+    if (!global.Channels.includes(message.channel.id)) {
+      global.Channels.push(message.channel.id);
       if (!Started) {
         bot.on("messageCreate", listener);
         Started = true;
@@ -59,7 +59,7 @@ module.exports = {
       return message.reply({ content: "Auto trad activée sur ce canal" });
     } else {
       console.log(Channels);
-      Channels.splice(Channels.indexOf(message.channel.id));
+      global.Channels.splice(global.Channels.indexOf(message.channel.id));
       return message.reply({ content: "Auto trad désactivée sur ce canal" });
     }
   },
