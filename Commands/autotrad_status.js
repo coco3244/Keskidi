@@ -11,13 +11,16 @@ module.exports = {
 
   run(bot, message) {
     let ids=""
-    if(global.Channels.length ===0){
-      ids="Aucuns canaux actifs pour le moment !"
-    }else{
+    
       global.Channels.forEach(chanId => {
-        ids+=`${message.guild.channels.cache.find(channel => channel.id === chanId)}\n`
+        if(message.guild.channels.cache.find(channel => channel.id === chanId)!=undefined){
+          ids+=`${message.guild.channels.cache.find(channel => channel.id === chanId)}\n`
+        }
       });
-    }
+      
+      if(global.Channels.length ===0 || ids==""){
+        ids="Aucuns canaux actifs pour le moment !"
+      }
     
 
     let Embed = new Discord.EmbedBuilder()
