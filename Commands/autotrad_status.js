@@ -11,9 +11,14 @@ module.exports = {
 
   run(bot, message) {
     let ids=""
-    global.Channels.forEach(chanId => {
-      ids+=`${message.guild.channels.cache.find(channel => channel.id === chanId)}\n`
-    });
+    if(global.Channels.length ===0){
+      ids="Aucuns canaux actifs pour le moment !"
+    }else{
+      global.Channels.forEach(chanId => {
+        ids+=`${message.guild.channels.cache.find(channel => channel.id === chanId)}\n`
+      });
+    }
+    
 
     let Embed = new Discord.EmbedBuilder()
             .setColor(0xff0000)
