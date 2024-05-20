@@ -18,7 +18,13 @@ module.exports = {
         msg.content.length <= 2000
       ) {
         let Thread
-        await translate(msg.content, { to: "fr" })
+        let MsgToTrad=""
+        if(msg.embeds.length > 0) {
+          MsgToTrad=msg.embeds[0].description
+        }else{
+          MsgToTrad=msg.content
+        }
+        await translate(MsgToTrad, { to: "fr" })
           .then(async (res) => {
             if (res.from.language.iso.toLowerCase() == "fr") {
               return;
@@ -58,7 +64,6 @@ module.exports = {
       }
       return message.reply({ content: "Auto trad activée sur ce canal" });
     } else {
-      console.log(Channels);
       global.Channels.splice(global.Channels.indexOf(message.channel.id));
       return message.reply({ content: "Auto trad désactivée sur ce canal" });
     }
