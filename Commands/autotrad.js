@@ -14,8 +14,7 @@ module.exports = {
     const listener = async (msg) => {
       if (
         msg.author.id != bot.user.id &&
-        global.Channels.includes(msg.channel.id) &&
-        msg.content.length <= 2000
+        global.Channels.includes(msg.channel.id)
       ) {
         let Thread
         let MsgToTrad=""
