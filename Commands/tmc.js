@@ -41,7 +41,7 @@ module.exports = {
       return message.reply({
         content: "C'est limité à 2000 caractères par trad, c'est con :/",ephemeral:PrivBool
       });
-
+      console.log(txt);
     translate(txt, { to: "fr" })
       .then((res) => {
         if (res.from.language.iso.toLowerCase() == "fr") {
