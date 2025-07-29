@@ -74,10 +74,10 @@ module.exports = {
             });
         }
       })
-      .catch((err) => {
+      /*.catch((err) => {
         return message.reply({
           content: `Une erreur est survenue : \`\`\`${err}\`\`\``,ephemeral:PrivBool
         });
-      });
+      });*/
   },
 };
