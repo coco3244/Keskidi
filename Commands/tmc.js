@@ -26,14 +26,14 @@ module.exports = {
   ],
 
   run(bot, message, args) {
-    const txt = args.getString("texte").toLowerCase();
+    const txt = args.getString("texte").toLowerCase().replace('<','').replace('>','');
     const public = args.getString("public").toLowerCase();
     if (public!="public" && public != "privé")
       return message.reply({ content: "Parametre privacy invalide"});
     let PrivBool
     if(public=="public")PrivBool=false
     if(public=="privé")PrivBool=true
-
+    
 
     if (txt.length < 2)
       return message.reply({ content: "C'est ptète un peu court là, non ?",nephemeral:PrivBool});
