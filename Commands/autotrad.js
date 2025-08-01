@@ -1,5 +1,5 @@
 const Discord = require("discord.js");
-const translate = require("@iamtraction/google-translate");
+const translate = require('../translate');
 
 let Started = false;
 
