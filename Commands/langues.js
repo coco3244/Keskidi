@@ -15,7 +15,7 @@ const nomsFrancais = {
 
 module.exports = {
   name: "langues",
-  description: "liste les langues disponibles",
+  description: "Liste des langues disponibles",
   permissions: "Aucune",
   dm: true,
   category: "Action",
