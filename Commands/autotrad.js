@@ -23,7 +23,7 @@ module.exports = {
         }else{
           MsgToTrad=msg.content
         }
-        await translate(MsgToTrad, { to: "fr" })
+        await translate(MsgToTrad, "fr")
           .then(async (res) => {
             if (res.from.language.iso.toLowerCase() == "fr") {
               return;
